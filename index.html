@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="./app.js" async></script>
+    <title>Ejercicio_06</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-center">
+        <div class="nav-header">
+          <img src="./assets/logo.png" alt="logo" class="logo-img" />
+        </div>
+      </div>
+    </nav>
+    <section class="page">
+      <form class="grade-form" id="grade-form">
+        <input
+          type="text"
+          name="nombre"
+          id="nombre"
+          class="form-input"
+          placeholder="Nombre"
+          required
+        />
+
+        <input
+          type="text"
+          name="apellido"
+          id="apellido"
+          class="form-input"
+          placeholder="Apellido"
+          required
+        />
+        <input
+          type="number"
+          name="matricula"
+          id="matricula"
+          class="form-input number-input"
+          placeholder="Matricula"
+          required
+        />
+        <input
+          type="number"
+          min="0"
+          max="100"
+          name="nota"
+          id="nota"
+          class="form-input number-input"
+          placeholder="Nota"
+          required
+        />
+        <button class="btn" id="submit-btn">Agregar</button>
+      </form>
+      <section>
+        <div class="container">
+          <div class="card">
+            <div class="card-body">
+              <div class="table-wrapper">
+                <table class="table" cellspacing="0" id="table">
+                  <thead>
+                    <tr class="grades-column">
+                      <th>Matricula</th>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Calificacion</th>
+                    </tr>
+                  </thead>
+                  <tbody class="table-body" id="table-body"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer>
+        <hr />
+        <div id="promedio-notas"></div>
+      </footer>
+    </section>
+  </body>
+</html>
