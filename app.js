@@ -20,6 +20,7 @@ class Estudiante {
     this.nota = nota;
   }
 }
+
 let estudiantes = [];
 
 const nuevoEstudiante = {
@@ -62,36 +63,18 @@ inputEventListener(inputNota);
 
 const crearRegistro = () => {
   // tablas
-  // const tableRow = document.createElement('tr');
-  // const tableData = (data) => {
-  //   const td = document.createElement('td');
-  //   td.innerText = data;
-  //   return td;
-  // };
-  // const tableDataMatricula = tableData(nuevoEstudiante.matricula);
-  // const tableDataNombre = tableData(nuevoEstudiante.nombre);
-  // const tableDataApellido = tableData(nuevoEstudiante.apellido);
-  // const tableDataNota = tableData(nuevoEstudiante.nota);
-
-  // tableRow.append(
-  //   tableDataMatricula,
-  //   tableDataNombre,
-  //   tableDataApellido,
-  //   tableDataNota
-  // );
-  // tableBody.innerHTML += `${tableRow.innerHTML}`;
   tableBody.innerHTML = '';
-  for (const estudiante of estudiantes) {
+  for (const { matricula, nombre, apellido, nota } of estudiantes) {
     const tableRow = document.createElement('tr');
     const tableData = (data) => {
       const td = document.createElement('td');
       td.innerText = data;
       return td;
     };
-    const tableDataMatricula = tableData(estudiante.matricula);
-    const tableDataNombre = tableData(estudiante.nombre);
-    const tableDataApellido = tableData(estudiante.apellido);
-    const tableDataNota = tableData(estudiante.nota);
+    const tableDataMatricula = tableData(matricula);
+    const tableDataNombre = tableData(nombre);
+    const tableDataApellido = tableData(apellido);
+    const tableDataNota = tableData(nota);
 
     tableRow.append(
       tableDataMatricula,
@@ -100,7 +83,7 @@ const crearRegistro = () => {
       tableDataNota
     );
 
-    tableBody.innerHTML += `${tableRow.innerHTML}`;
+    tableBody.innerHTML += tableRow.innerHTML;
   }
 
   // promedio
@@ -108,6 +91,7 @@ const crearRegistro = () => {
     contenedorPromedio.innerHTML = '';
     const promedio = document.createElement('h4');
     promedio.classList.add('promedio');
+
     promedio.innerHTML = `Promedio <span class="notas">${(
       estudiantes.reduce((promedio, estudiante) => {
         const { nota } = estudiante;
