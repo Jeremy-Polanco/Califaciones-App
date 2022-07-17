@@ -66,21 +66,34 @@ const crearRegistro = () => {
   tableBody.innerHTML = '';
   for (const { matricula, nombre, apellido, nota } of estudiantes) {
     const tableRow = document.createElement('tr');
+
     const tableData = (data) => {
       const td = document.createElement('td');
       td.innerText = data;
       return td;
     };
+
+    const tableDataBtn = (textoBoton1, textoBoton2) => {
+      const td = document.createElement('td');
+
+      td.innerHTML = `<button onclick="borrarRegistro(${matricula})"   class="btn">${textoBoton1}</button>
+      <button onclick="editarRegistro(${matricula})" class="btn">${textoBoton2}</button>`;
+
+      return td;
+    };
+
     const tableDataMatricula = tableData(matricula);
     const tableDataNombre = tableData(nombre);
     const tableDataApellido = tableData(apellido);
     const tableDataNota = tableData(nota);
+    const botonesFunciones = tableDataBtn('borrar', 'editar');
 
     tableRow.append(
       tableDataMatricula,
       tableDataNombre,
       tableDataApellido,
-      tableDataNota
+      tableDataNota,
+      botonesFunciones
     );
 
     tableBody.innerHTML += tableRow.innerHTML;
@@ -102,6 +115,33 @@ const crearRegistro = () => {
 
     contenedorPromedio.appendChild(promedio);
   }
+};
+
+const borrarRegistro = (matricula) => {
+  estudiantes = estudiantes.filter(
+    (estudiante) => estudiante.matricula !== matricula
+  );
+  crearRegistro();
+  save();
+};
+
+const editarRegistro = (matricula) => {
+  const estudiante = estudiantes.filter(
+    (estudiante) => estudiante.matricula === matricula
+  );
+
+  const { nombre, apellido, nota } = estudiante[0];
+
+  inputNombre.value = nombre;
+  inputMatricula.value = matricula;
+  inputApellido.value = apellido;
+  inputNota.value = nota;
+  nuevoEstudiante.nombre = nombre;
+  nuevoEstudiante.matricula = matricula;
+  nuevoEstudiante.apellido = apellido;
+  nuevoEstudiante.nota = nota;
+
+  borrarRegistro(matricula);
 };
 
 const submitEventListener = (form) => {
